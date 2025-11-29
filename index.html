@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deutsch lernen App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app">
+      
+      <section id="start-screen" class="start-screen-container">
+        <div class="hero-content">
+          <h1>Deutsch lernen App</h1>
+          <p>Choose how you want to practice today.</p>
+          
+          <div class="start-buttons">
+            <button id="btnStartSentences" class="big-start-btn primary-glow">
+              <span>📝</span>
+              Sentences
+            </button>
+            <button id="btnStartArticles" class="big-start-btn secondary-glow">
+              <span>🧠</span>
+              Articles
+            </button>
+            <button id="btnStartWords" class="big-start-btn tertiary-glow">
+              <span>📚</span>
+              Words
+            </button>
+            <button id="btnStartGrammar" class="big-start-btn grammar-glow">
+              <span>⚡️</span>
+              Grammar
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <main id="app-interface" class="card hidden">
+        
+        <header class="app-header-inner">
+          <button id="backToStartBtn" class="back-btn">← Back</button>
+          <h2>German Training</h2>
+        </header>
+
+        <section id="mode-sentences">
+          <section class="level-section">
+            <div class="label">Level (CEFR)</div>
+            <div class="level-buttons">
+              <button class="level-btn active" data-level="A1">A1</button>
+              <button class="level-btn " data-level="A2">A2</button>
+              <button class="level-btn" data-level="B1">B1</button>
+            </div>
+            <p id="levelDescription" class="level-description">
+              A2 – everyday sentences.
+            </p>
+          </section>
+
+          <section class="sentence-section">
+            <div class="label-row">
+              <span class="label">Swedish Sentence</span>
+            </div>
+
+            <div id="svSentence" class="sentence-box">
+              Loading...
+            </div>
+          </section>
+
+          <section class="input-section">
+            <textarea id="userGerman" class="input-area" rows="3" placeholder="Write the translation in German here..."></textarea>
+            
+            <p id="feedback" class="feedback"></p>
+
+            <div id="solutionBox" class="solution-box hidden">
+              <div class="solution-label">Solution</div>
+              <div id="correctGerman" class="solution-text"></div>
+            </div>
+
+            <div class="button-row button-row-bottom">
+              <button id="checkBtn">✅ Check Answer</button>
+              <button id="nextSentenceBtn" class="hidden next-btn">➡️ Next Sentence</button>
+              <button id="showSolutionBtn" class="secondary-btn">👀 Solution</button>
+            </div>
+            
+            <div class="mini-meta">
+              <span>🔥 Streak: <span id="sentenceStreak">0</span></span>
+            </div>
+          </section>
+        </section>
+
+        <section id="mode-articles" class="hidden">
+          <section class="article-header">
+            <div class="label-row">
+              <span class="label">Guess the Article</span>
+            </div>
+          </section>
+          
+          <section class="article-word-section">
+            <div class="article-word-box">
+              <div class="article-word-main" id="articleNoun">—</div>
+              <div class="article-word-sub" id="articleSwedish">Loading...</div>
+            </div>
+          </section>
+          
+          <section class="article-buttons-section">
+            <div class="article-buttons">
+              <button class="article-btn" data-article="der" id="btnDer">der</button>
+              <button class="article-btn" data-article="die" id="btnDie">die</button>
+              <button class="article-btn" data-article="das" id="btnDas">das</button>
+            </div>
+            
+            <p id="articleFeedback" class="feedback"></p>
+            
+            <div id="articleSolutionBox" class="solution-box hidden">
+              <div class="solution-label">Solution</div>
+              <div id="articleSolution" class="solution-text"></div>
+            </div>
+
+            <div class="button-row-bottom">
+              <button id="nextArticleBtn" class="hidden next-btn">➡️ Next Word</button>
+            </div>
+            
+            <div class="mini-meta">
+              <span>⚡ Streak: <span id="articleStreak">0</span></span>
+            </div>
+          </section>
+        </section>
+
+        <section id="mode-words" class="hidden">
+          <section class="sentence-section">
+            <div class="label-row">
+              <span class="label">Translate the word</span>
+            </div>
+            <div id="svWordBox" class="sentence-box">
+              Loading...
+            </div>
+          </section>
+
+          <section class="input-section">
+            <input type="text" id="userWordInput" class="input-area" placeholder="German translation..." autocomplete="off">
+            
+            <p id="wordFeedback" class="feedback"></p>
+
+            <div id="wordSolutionBox" class="solution-box hidden">
+              <div class="solution-label">Correct Answer</div>
+              <div id="wordSolutionText" class="solution-text"></div>
+            </div>
+
+            <div class="button-row button-row-bottom">
+              <button id="checkWordBtn">✅ Check Word</button>
+              <button id="nextWordBtn" class="hidden next-btn">➡️ Next Word</button>
+              <button id="showWordSolutionBtn" class="secondary-btn">👀 Solution</button>
+            </div>
+            
+            <div class="mini-meta">
+               <span>📚 Streak: <span id="wordStreak">0</span></span>
+            </div>
+          </section>
+        </section>
+
+        <section class="meta-section">
+        </section>
+
+        <section id="mode-grammar" class="hidden">
+          <section class="article-header">
+            <div class="label-row">
+              <span class="label">Fill in the blank</span>
+              <span class="pill-btn" id="grammarType">...</span>
+            </div>
+          </section>
+
+          <section class="article-word-section">
+            <div class="article-word-box">
+              <div class="article-word-main" id="grammarQuestion" style="font-size: 2.5rem;">Loading...</div>
+            </div>
+          </section>
+
+          <section class="article-buttons-section">
+            <div class="article-buttons" id="grammarOptionsContainer">
+              <button class="article-btn" id="opt1">Option 1</button>
+              <button class="article-btn" id="opt2">Option 2</button>
+              <button class="article-btn" id="opt3">Option 3</button>
+            </div>
+
+            <div id="grammarSolutionBox" class="solution-box hidden">
+              <div class="solution-label">Correct Answer</div>
+              <div id="grammarSolutionText" class="solution-text"></div>
+            </div>
+
+            <div class="button-row-bottom">
+              <button id="nextGrammarBtn" class="hidden next-btn">➡️ Next Question</button>
+            </div>
+
+            <div class="mini-meta">
+              <span>⚡ Streak: <span id="grammarStreak">0</span></span>
+            </div>
+          </section>
+        </section>
+      </main>
+
+    </div>
+  </body>
+</html>
