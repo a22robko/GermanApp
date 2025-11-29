@@ -546,4 +546,92 @@ body {
     transform: scale(1);
     opacity: 1;
   }
+  
+}
+/* =========================
+   Tablet & mobil (< 768px)
+   ========================= */
+@media (max-width: 768px) {
+  body {
+    padding: 16px;
+  }
+
+  .app {
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.3rem;
+    text-align: center;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .card {
+    padding: 1.8rem;
+  }
+
+  .sentence-box {
+    font-size: 1.05rem;
+    padding: 1rem;
+  }
+
+  .input-area {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .article-word-box {
+    padding: 2rem 1.4rem;
+  }
+
+  .article-word-main {
+    font-size: 2.5rem;
+  }
+
+  .button-row {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 10px;
+  }
+}
+
+/* =========================
+   Liten mobil (< 480px)
+   ========================= */
+@media (max-width: 480px) {
+  .start-buttons {
+    grid-template-columns: 1fr;   /* istället för 2 kolumner */
+    gap: 12px;
+    max-width: none;
+  }
+
+  .big-start-btn {
+    height: 120px;
+    border-radius: 16px;
+  }
+
+  .app-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .button-row {
+    grid-template-columns: 1fr;   /* knappar under varandra */
+  }
+
+  .article-buttons {
+    grid-template-columns: 1fr;   /* en rad per knapp */
+  }
+
+  .next-btn,
+  #checkBtn,
+  #checkWordBtn {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
 }
