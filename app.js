@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://germanapp-unau.onrender.com";
 
 let currentMode = "sentences"; 
 
