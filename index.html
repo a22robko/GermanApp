@@ -13,6 +13,7 @@
   <body>
     <div class="app">
       
+      <!-- START-SCREEN -->
       <section id="start-screen" class="start-screen-container">
         <div class="hero-content">
           <h1>Deutsch lernen App</h1>
@@ -35,10 +36,16 @@
               <span>⚡️</span>
               Grammar
             </button>
+            <!-- NY knapp för preteritum -->
+            <button id="btnStartPreterite" class="big-start-btn">
+              <span>📖</span>
+              Preterite
+            </button>
           </div>
         </div>
       </section>
 
+      <!-- HUVUD-INTERFACE -->
       <main id="app-interface" class="card hidden">
         
         <header class="app-header-inner">
@@ -46,13 +53,14 @@
           <h2>German Training</h2>
         </header>
 
+        <!-- SENTENCES -->
         <section id="mode-sentences">
           <section class="level-section">
             <div class="label">Level (CEFR)</div>
             <div class="level-buttons">
               <button class="level-btn active" data-level="A1">A1</button>
-              <button class="level-btn " data-level="A2">A2</button>
-              <button class="level-btn" data-level="B1">B1</button>
+              <button class="level-btn" data-level="A2">A2</button>
+              <button class="level-btn" data-level="B1">preteritum</button>
             </div>
             <p id="levelDescription" class="level-description">
               A2 – everyday sentences.
@@ -70,7 +78,12 @@
           </section>
 
           <section class="input-section">
-            <textarea id="userGerman" class="input-area" rows="3" placeholder="Write the translation in German here..."></textarea>
+            <textarea
+              id="userGerman"
+              class="input-area"
+              rows="3"
+              placeholder="Write the translation in German here..."
+            ></textarea>
             
             <p id="feedback" class="feedback"></p>
 
@@ -91,6 +104,7 @@
           </section>
         </section>
 
+        <!-- ARTICLES -->
         <section id="mode-articles" class="hidden">
           <section class="article-header">
             <div class="label-row">
@@ -129,6 +143,7 @@
           </section>
         </section>
 
+        <!-- WORDS -->
         <section id="mode-words" class="hidden">
           <section class="sentence-section">
             <div class="label-row">
@@ -140,7 +155,13 @@
           </section>
 
           <section class="input-section">
-            <input type="text" id="userWordInput" class="input-area" placeholder="German translation..." autocomplete="off">
+            <input
+              type="text"
+              id="userWordInput"
+              class="input-area"
+              placeholder="German translation..."
+              autocomplete="off"
+            />
             
             <p id="wordFeedback" class="feedback"></p>
 
@@ -161,9 +182,9 @@
           </section>
         </section>
 
-        <section class="meta-section">
-        </section>
+        
 
+        <!-- GRAMMAR -->
         <section id="mode-grammar" class="hidden">
           <section class="article-header">
             <div class="label-row">
@@ -174,7 +195,13 @@
 
           <section class="article-word-section">
             <div class="article-word-box">
-              <div class="article-word-main" id="grammarQuestion" style="font-size: 2.5rem;">Loading...</div>
+              <div
+                class="article-word-main"
+                id="grammarQuestion"
+                style="font-size: 2.5rem;"
+              >
+                Loading...
+              </div>
             </div>
           </section>
 
@@ -199,8 +226,42 @@
             </div>
           </section>
         </section>
-      </main>
 
+        <!-- PRETERITE -->
+         <!-- PRETERITE -->
+<section id="mode-preterite" class="hidden">
+  <section class="sentence-section">
+    <div class="label-row">
+      <span class="label">Verb i preteritum</span>
     </div>
-  </body>
-</html>
+
+    <div id="preteriteQuestion" class="sentence-box">
+      Loading...
+    </div>
+  </section>
+
+  <section class="input-section">
+    <input
+      type="text"
+      id="userPreteriteInput"
+      class="input-area"
+      placeholder="Skriv verbet i preteritum (t.ex. ging)..."
+      autocomplete="off"
+    />
+
+    <div id="preteriteSolutionBox" class="solution-box hidden">
+      <div class="solution-label">Correct Answer</div>
+      <div id="preteriteSolutionText" class="solution-text"></div>
+    </div>
+
+    <div class="button-row button-row-bottom">
+      <button id="checkPreteriteBtn">✅ Check</button>
+      <button id="nextPreteriteBtn" class="hidden next-btn">➡️ Next</button>
+      <button id="showPreteriteSolutionBtn" class="secondary-btn">👀 Solution</button>
+    </div>
+
+    <div class="mini-meta">
+      <span>⏳ Streak: <span id="preteriteStreak">0</span></span>
+    </div>
+  </section>
+</section>

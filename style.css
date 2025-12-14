@@ -196,6 +196,7 @@ body {
   margin-top: 10px;
 }
 
+
 .level-btn {
   background: #334155;
   border: none;
@@ -205,6 +206,11 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
+}
+
+.meta-section {
+  flex: 0 0 auto;
+  margin-top: 0;
 }
 
 .level-btn.active {
@@ -311,9 +317,10 @@ body {
 }
 
 /* Primära actions */
-
+/* Alla rosa check-knappar (meningar, ord, preteritum) */
 #checkBtn,
-#checkWordBtn {
+#checkWordBtn,
+#checkPreteriteBtn {
   background: var(--primary);
   color: white;
   border: none;
@@ -326,9 +333,19 @@ body {
   transition: all 0.2s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
+.article-btn,
+#checkBtn,
+#checkWordBtn,
+#checkPreteriteBtn,
+.next-btn {
+  padding: 12px;
+  font-size: 1rem;
+}
+
 
 #checkBtn:hover,
-#checkWordBtn:hover {
+#checkWordBtn:hover,
+#checkPreteriteBtn:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4);
@@ -490,6 +507,111 @@ body {
   opacity: 0.6;
 }
 
+/* Dölja/visa sektioner */
+.hidden {
+  display: none;
+}
+
+/* Rätt / fel bakgrund */
+.correct-bg {
+  background: linear-gradient(135deg, #16a34a22, #22c55e33);
+  border: 1px solid #22c55e;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.7);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wrong-bg {
+  background: linear-gradient(135deg, #dc262622, #ef444422);
+  border: 1px solid #ef4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* När man svarar rätt */
+.answer-correct {
+  animation: answerCorrect 0.4s ease-out;
+}
+
+@keyframes answerCorrect {
+  0%   { transform: scale(0.96); }
+  50%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+/* När man svarar fel */
+.answer-wrong {
+  animation: answerWrong 0.4s ease;
+}
+
+@keyframes answerWrong {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* Streak som "poppar" till när den ändras */
+.streak-pop {
+  animation: streakPop 0.4s ease-out;
+}
+
+@keyframes streakPop {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Fade in + liten slide upp för hela app-ytan när man byter mode */
+.screen-in {
+  animation: fadeInUp 0.35s ease-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Knappar lite mjukare */
+button {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+/* Rätt/fel-knappar i artikel- och grammarläge */
+.ok {
+  border: 2px solid #22c55e;
+}
+
+.error {
+  border: 2px solid #ef4444;
+}
+
+/* Hjälp-läge label i grammar */
+.help-mode {
+  cursor: pointer;
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
 
 .meta-section {
   margin-top: auto;
@@ -552,12 +674,230 @@ body {
     padding: 10px;
   }
 
+  /* Själva kortet – lite tajtare padding */
   .card {
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem 1.1rem;
     border-radius: 18px;
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 20px); 
+    min-height: calc(100vh - 20px);
+  }
+
+  /* Mindre luft under headern "GERMAN TRAINING" */
+  .app-header-inner {
+    margin-bottom: 0.8rem;
+  }
+
+  /* Mindre luft mellan rubrik och uppgift */
+  .level-section,
+  .sentence-section {
+    margin-bottom: 0.8rem;
+  }
+
+  .label-row {
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-content h1,
+  .article-word-main {
+    font-size: 2.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .sentence-box {
+    font-size: 1.7rem;
+    padding: 1.1rem;
+  }
+
+  .article-btn,
+  #checkBtn,
+  #checkWordBtn,
+  #checkPreteriteBtn,
+  .next-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* Mindre glapp ovanför knappraden längst ner */
+  .button-row-bottom {
+    margin-top: 1.2rem;
+    width: 100%;
+  }
+}
+
+:root {
+  --bg-body: #0f172a;
+  --bg-card: #1e293b;
+  --bg-input: #020617;
+
+  --primary: #f472b6;
+  --primary-hover: #db2777;
+
+  --accent-blue: #38bdf8;
+  --accent-blue-hover: #0284c7;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --radius-lg: 24px;
+  --radius-md: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  /* === FIX: ta bort centrerande flex === */
+  display: block;
+  padding: 20px;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+/* App-wrapper: centrerad horisontellt, ej vertikalt */
+.app {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Startskärm */
+
+.start-screen-container {
+  text-align: center;
+  animation: fadeIn 0.8s ease-out;
+  padding: 40px 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.03em;
+}
+
+.hero-content p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+/* Start-knappar (2x2 grid) */
+
+.start-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.big-start-btn {
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.big-start-btn span {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.primary-glow:hover {
+  background: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(244, 114, 182, 0.6);
+  border-color: transparent;
+}
+
+.secondary-glow:hover {
+  background: var(--accent-blue);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.6);
+  border-color: transparent;
+}
+
+.tertiary-glow {
+  background: rgba(30, 41, 59, 0.6);
+}
+
+.tertiary-glow:hover {
+  background: #f59e0b;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.6);
+  border-color: transparent;
+}
+
+.grammar-glow {
+  background: rgba(30, 41, 59, 0.6);
+}
+
+.grammar-glow:hover {
+  background: #8b5cf6;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.6);
+  border-color: transparent;
+}
+
+/* App-kortet */
+
+.hidden {
+  display: none !important;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: slideUp 0.5s ease-out;
+  position: relative;
+}
+
+/* ... resten av din CSS oförändrad ... */
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
+    /* FIX: gör kortet till en kolumn som fyller höjden,
+       så att knappar/streak kan ligga längst ner */
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 20px);
   }
 
   .hero-content h1,
@@ -584,7 +924,7 @@ body {
   }
 
   .button-row-bottom {
-    margin-top: auto;   
+    margin-top: auto;
     width: 100%;
   }
 }
